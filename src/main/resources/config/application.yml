@@ -1,0 +1,7 @@
+spring:
+  thymeleaf:
+    cache: false
+  profiles:
+    active: dev
+server:
+  port: 9000

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<head>
+</head>
+<body>
+<h2 th:value="test"></h2>
+<div sec:authorize="isAuthenticated()">
+    <p>已登录</p>
+    <p>登录名：<span sec:authentication="name"></span></p>
+    <p>Password：<span sec:authentication="principal.password"></span></p>
+    <div sec:authentication="principal.authorities"></div> <!-- works fine -->
+    <p>accountNonExpired ：<span sec:authentication="principal.accountNonExpired"></span></p>
+    <p>accountNonLocked：<span sec:authentication="principal.accountNonLocked"></span></p>
+    <p>credentialsNonExpired ：<span sec:authentication="principal.credentialsNonExpired"></span></p>
+    <p>Name：<span sec:authentication="principal.username"></span></p>
+    <p>拥有的角色：
+        <span sec:authorize="hasRole('ROLE_ADMIN')">管理员</span>
+        <span sec:authorize="hasRole('ROLE_USER')">用户</span>
+        <hr>
+    </p>
+</div>
+<div sec:authorize="isAnonymous()"><p>未登录</p></div>
+<div sec:authorize="isRememberMe()"><p>记住我登录</p></div>
+</body>
+</html>
